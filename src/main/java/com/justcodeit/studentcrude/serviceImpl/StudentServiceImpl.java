@@ -42,4 +42,33 @@ public class StudentServiceImpl implements StudentService {
 		return null;
 	}
 
+	@Override
+	public Student updateStudent(Student student, Integer id) {
+		// TODO Auto-generated method stub
+		student.setId(student.getId());
+		student.setName(student.getName());
+		student.setBirthDate(student.getBirthDate());
+		studentList.set(1, student);
+		return student;
+	}
+
+	@Override
+	public Student createStudent(Student student) {
+		// TODO Auto-generated method stub
+		 studentList.add(student);
+		 return student;
+	}
+
+	@Override
+	public boolean deletStudent(Integer id) {
+		// TODO Auto-generated method stub
+		for(Student student : studentList) {
+			if(student.getId().equals(id)) {
+				studentList.remove(student);
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
