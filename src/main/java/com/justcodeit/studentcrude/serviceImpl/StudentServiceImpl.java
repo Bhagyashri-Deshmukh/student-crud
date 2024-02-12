@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.justcodeit.studentcrude.pojo.Student;
 import com.justcodeit.studentcrude.service.StudentService;
+import com.justcodeit.studentcrude.exception.*;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -32,11 +33,13 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public Student getStudentById(Integer id) {
+	public Student getStudentById(Integer id) throws StudentNotFoundException {
 		// TODO Auto-generated method stub
 		for(Student student:studentList) {
 			if(student.getId().equals(id)) {
 				return student;
+			}else {
+				throw new StudentNotFoundException("Student with given Id : "+id+" is not available.");
 			}
 		}
 		return null;
