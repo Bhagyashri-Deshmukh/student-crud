@@ -17,6 +17,8 @@ import com.justcodeit.studentcrude.exception.StudentNotFoundException;
 import com.justcodeit.studentcrude.pojo.Student;
 import com.justcodeit.studentcrude.service.StudentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class StudentController {
 	
@@ -42,7 +44,7 @@ public class StudentController {
 	}
 	
 	@PostMapping("/add-student")
-	public ResponseEntity<Object> createStudent(@RequestBody Student student) {
+	public ResponseEntity<Object> createStudent(@Valid @RequestBody Student student) {
 		// TODO Auto-generated method stub
 		//return studentService.createStudent(student);
 		// /add-student/104

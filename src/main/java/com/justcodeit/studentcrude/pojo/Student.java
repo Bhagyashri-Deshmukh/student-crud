@@ -2,10 +2,19 @@ package com.justcodeit.studentcrude.pojo;
 
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 public class Student {
 
+	@Positive
 	private Integer id;
+	
+	@Size(min=4, message="Name should be at least 4 characters.")
 	private String name;
+	
+	@PastOrPresent
 	private LocalDateTime birthDate;
 
 	public Student() {
