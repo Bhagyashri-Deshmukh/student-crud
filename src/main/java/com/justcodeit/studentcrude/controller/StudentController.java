@@ -23,12 +23,15 @@ import com.justcodeit.studentcrude.service.StudentService;
 
 import jakarta.validation.Valid;
 
+// this is rest controller which is combination pf @Controller and @ResponseBody
 @RestController
 public class StudentController {
 	
+	// @Autowired is used to inject bean at runtime
 	@Autowired
 	private StudentService studentService;
 	
+	// MessageSource is used for internationalisation using which we can display/read messages in multiple languages
 	private MessageSource messageSource;	
 	
 	public StudentController(MessageSource messageSource) {
@@ -39,6 +42,8 @@ public class StudentController {
 	@GetMapping("/get-internationalisation")
 	public String internationalisation() {		
 		// TODO Auto-generated method stub
+		
+		// locale is used to get language information which we pass as header from postman
 		Locale locale = LocaleContextHolder.getLocale();
 		return messageSource.getMessage("good.morning.message", null, "This is a default message in eng", locale);
 	}
@@ -67,12 +72,13 @@ public class StudentController {
 		//return studentService.createStudent(student);
 		// /add-student/104
 		Student st = studentService.createStudent(student);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-						.path("/{id}")
-						.buildAndExpand(st.getId())
-						.toUri();
 		
-		return ResponseEntity.created(location).build();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest() // this line gives the path of current request
+						.path("/{id}") // here we appending id to the current request
+						.buildAndExpand(st.getId()) // use the id of newly created user
+						.toUri(); // convert it into URI
+		
+		return ResponseEntity.created(location).build(); // returning the status 201
 	}
 	
 	@DeleteMapping("/delete-student/{id}")

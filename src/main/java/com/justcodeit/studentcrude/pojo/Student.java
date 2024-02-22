@@ -2,10 +2,16 @@ package com.justcodeit.studentcrude.pojo;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
+//@JsonIgnoreProperties("birthDate") => to ignore field at class level
+//@JsonIgnoreProperties({"birthDate","name"}) // to ignore multiple fields at class level
 public class Student {
 
 	@Positive
@@ -15,6 +21,8 @@ public class Student {
 	private String name;
 	
 	@PastOrPresent
+	//@JsonProperty("birth_date")
+	//@JsonIgnore => to ignore field at field level
 	private LocalDateTime birthDate;
 
 	public Student() {

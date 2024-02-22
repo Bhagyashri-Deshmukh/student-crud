@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+
+// @ControllerAdvice is usedso that this exception class can be used for all controllers globally
 @ControllerAdvice
 public class StudentResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
+	// @ExceptionHandler is used to specify to which exception this method should be executed
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ExceptionDetails> handleAllException(Exception ex, WebRequest request) throws Exception {
 		

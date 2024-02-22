@@ -2,6 +2,8 @@ package com.justcodeit.studentcrude.exception;
 
 import java.time.LocalDateTime;
 
+
+// this class is created to write our own exception message
 public class ExceptionDetails {
 
 	private LocalDateTime time;
